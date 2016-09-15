@@ -15,7 +15,29 @@ if (isset ($_POST["signupEmail"])) {
 		//oli töesti tühi
 		echo "email oli tühi";
 		$signupEmailError = "See väli on kohustuslik";
+	}
+}	
 	
+	$signupPasswordError = "";
+	
+
+	
+	//kas on üldse olemas
+if (isset ($_POST["loginPassword"])) {
+	
+	//oli olemas, ehk keegi vajutas nuppu
+	//kas oli tühi
+	if (empty ($_POST["signupEmail"])) {
+		//oli töesti tühi
+		echo "email oli tühi";
+		$signupPasswordError = "See väli on kohustuslik";
+	} else {
+		
+		//oli midagi, ei olnud tühi
+		//kas pikkus vähemalt 8
+		if(strlen($_POST["signupPassword"]) <8 ) {
+			$singupPasswordError = "Parool peab olema vähemalt 8 tm pikk ";
+		}
 	}
 }
 
@@ -51,11 +73,11 @@ if (isset ($_POST["signupEmail"])) {
   <form method="POST">
   
  <label>E-post</label>
- <input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
+ <input name="signnupEmail" type="email"> <?php echo $signupEmailError; ?>
  
  <br><br>
  <label>Password</label>
- <input name="loginPassword" type="password" 
+ <input name="loginPassword" type="password" <?php echo $signupPasswordError ?>
  
  
  <br><br>
